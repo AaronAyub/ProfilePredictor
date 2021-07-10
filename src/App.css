@@ -1,0 +1,30 @@
+.App {
+    display:flex;
+    flex-direction:column;
+}
+
+.toolbar {
+    justify-content:space-between;
+}
+
+/* Middle contains everything except for the navbar and footer. */
+.middle {
+    flex-grow:1;
+}
+
+/* Add more spacing below the footer for smaller screens */
+@media only screen and (min-height: 701px) {
+    .App {
+        min-height:98vh;
+    }
+}
+@media only screen and (min-height: 501px) and (max-height: 700px) {
+    .App {
+        min-height:97vh;
+    }
+}
+@media only screen and (max-height: 500px) {
+    .App {
+        min-height:96vh;
+    }
+}
