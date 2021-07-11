@@ -1,14 +1,35 @@
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Query from './components/Query'
 import "./App.css"
+import React from 'react';
 
-function App(): JSX.Element  {
-  return (
-    <div className="App">
-      <Header />
-      <Footer />
-    </div>
-  );
+class App extends React.Component  {
+
+  // async predictAge(name: string) {
+  //   let request: string = "https://api.agify.io?name=" + name
+  //   let response = await fetch(request)
+  //   let json
+  //   if (response.ok) {
+  //     json = await response.json()
+  //   }
+  //   console.log(json)
+  // }
+
+  sendQuery(name: string, country: string) {
+    console.log(name + " " + country)
+  }
+
+  // componentDidMount() {
+  //   this.predictAge("test")
+  // }
+
+  render() {
+    return (
+      <div className="App">
+        <Query sendQuery={this.sendQuery} />
+      </div>
+    );
+  }
+
 }
 
 export default App;
