@@ -1,35 +1,34 @@
 import { Button, TextField, Container } from '@material-ui/core'
-import React, { FormEvent } from 'react'
+import React, { useState } from 'react'
 
+type sendQuery = (name: string, country: string) => void
 interface QueryProps {
-    sendQuery: Function
+    sendQuery: sendQuery
 }
 
-class Query extends React.Component<QueryProps> {
-    state = {
-        name: "",
-        country: ""
+const Query = (props: QueryProps): JSX.Element => {
+    const [name, setName] = useState<string>("")
+    const [country, setCountry] = useState<string>("")
+
+    const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value)
+    }
+    const handleChangeCountry = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCountry(event.target.value)
+    }
+    const handleSubmit = () => {
+        props.sendQuery(name,country)
+        setName("")
+        setCountry("")
     }
 
-    handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({name: event.target.value})
-    }
-    handleChangeCountry = (event: React.ChangeEvent<HTMLInputElement>) => {
-        this.setState({country: event.target.value})
-    }
-    handleSubmit = () => {
-        this.props.sendQuery(this.state.name,this.state.country)
-    }
-
-    render() {
-        return (
-            <Container className="middle">
-                <TextField value = {this.state.name} onChange={this.handleChangeName} required name="name" label="First Name"/>
-                <TextField value = {this.state.country} onChange={this.handleChangeCountry} name="country" label="Country (Optional)"/>
-                <Button onClick={this.handleSubmit} variant="contained" color="primary">Submit</Button>
-            </Container>
-        )
-    }
+    return (
+        <Container className="middle">
+            <TextField value = {name} onChange={handleChangeName} required name="name" label="First Name"/>
+            <TextField value = {country} onChange={handleChangeCountry} name="country" label="Country (Optional)"/>
+            <Button onClick={handleSubmit} variant="contained" color="primary">Submit</Button>
+        </Container>
+    )
 }
 
 export default Query
