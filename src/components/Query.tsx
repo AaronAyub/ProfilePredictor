@@ -1,9 +1,9 @@
 import { Button, TextField, Container } from '@material-ui/core'
 import React, { useState } from 'react'
 
-type sendQuery = (name: string, country: string) => void
+type predict = (name: string, country: string) => void
 interface QueryProps {
-    sendQuery: sendQuery
+    predict: predict
 }
 
 const Query = (props: QueryProps): JSX.Element => {
@@ -17,7 +17,7 @@ const Query = (props: QueryProps): JSX.Element => {
         setCountry(event.target.value)
     }
     const handleSubmit = () => {
-        props.sendQuery(name,country)
+        props.predict(name,country)
         setName("")
         setCountry("")
     }
