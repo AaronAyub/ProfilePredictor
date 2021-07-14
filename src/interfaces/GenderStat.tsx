@@ -1,5 +1,5 @@
 export default interface GenderStat {
-    gender: string,
+    gender: string | null,
     probability: number,
     count: number
 }

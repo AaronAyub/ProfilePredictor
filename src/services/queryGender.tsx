@@ -11,7 +11,7 @@ const queryGender = async (name: string, country: string | null): Promise<Gender
         return await response.json()
     }
     return {
-        gender: "undefined",
+        gender: null,
         probability: -1,
         count: -1
     }

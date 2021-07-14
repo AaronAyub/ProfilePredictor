@@ -11,10 +11,11 @@ import queryCountry from './queryCountry'
 const predict = async (name: string, country: string): Promise<Profile> => {
     let ageStat: AgeStat = await queryAge(name, country)
     let genderStat: GenderStat = await queryGender(name, country)
-    let countryStat: CountryStat = null
+    let countryStat: string | null | {country_id: string, probability: number}[] = null
     // Do not predict the country if the user has already provided the country.
     if (!country) {
-        countryStat = await queryCountry(name, null)
+        let countryJson: CountryStat = await queryCountry(name)
+        countryStat = countryJson.country
     }
     else {
         countryStat = country
