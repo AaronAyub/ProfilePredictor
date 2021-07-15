@@ -1,5 +1,6 @@
 import AgeStat from '../interfaces/AgeStat'
 
+/* Queries agify.io for a prediction on age, given a name. */
 const queryAge = async (name: string, country: string | null): Promise<AgeStat> => {
     let request: string = "https://api.agify.io"
     request += "?name=" + name // Add the name given by the user to the URL

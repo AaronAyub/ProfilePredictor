@@ -1,13 +1,14 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
+import { Box } from '@material-ui/core'
 import Profile from '../interfaces/Profile'
 
 interface SummaryProps {
     profile: Profile
 }
 
+// A textual summary of a profile
 const Summary = (props: SummaryProps): JSX.Element => {
-
+    // Display the predicted age if possible
     const RenderAge = () => {
         if (props.profile.age === -1) {
             return <React.Fragment></React.Fragment>
@@ -19,6 +20,7 @@ const Summary = (props: SummaryProps): JSX.Element => {
         )
     }
 
+    // Display the predicted gender and accuracy if possible
     const RenderGender = () => {
         if (!props.profile.gender) {
             return <React.Fragment></React.Fragment>
@@ -35,6 +37,8 @@ const Summary = (props: SummaryProps): JSX.Element => {
         )
     }
 
+    /* Displays the predicted country if the user didn't provide one.
+    Alternatively, displays the country the user provided one. */
     const RenderCountry = () => {
         if (!props.profile.country) {
             return <React.Fragment></React.Fragment>
@@ -62,14 +66,14 @@ const Summary = (props: SummaryProps): JSX.Element => {
     }
 
     return (
-        <Container>
+        <Box>
             <div>
                 {props.profile.name}
             </div>
             <RenderAge />
             <RenderGender />
             <RenderCountry />
-        </Container>
+        </Box>
     )
 }
 

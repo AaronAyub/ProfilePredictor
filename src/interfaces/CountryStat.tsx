@@ -1,7 +1,4 @@
-// type CountryStat = {country_id: string, probability: number}[] | string | null
-interface CountryStat {
+// CountryStat is the possible attributes expected from nationalize.io
+export default interface CountryStat {
     country: {country_id: string, probability: number}[]
 }
-
-
-export default CountryStat

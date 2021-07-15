@@ -1,15 +1,21 @@
 .index {
     display:flex;
     flex-direction:column;
+    align-items:center;
 }
 
 .toolbar {
     justify-content:space-between;
 }
 
-/* Middle contains everything except for the navbar and footer. */
+/* App contains everything except for the navbar and footer. */
 .App {
     flex-grow:1;
+}
+
+.query {
+    align-items:center;
+    justify-content:center;
 }
 
 /* Add more spacing below the footer for smaller screens */

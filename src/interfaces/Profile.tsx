@@ -1,3 +1,4 @@
+// A profile is a set of predictions (age, gender, and nationality) based on a given name.
 export default interface Profile {
     name: string,
     age: number,

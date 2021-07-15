@@ -1,5 +1,6 @@
 import GenderStat from '../interfaces/GenderStat'
 
+/* Queries genderize.io for a prediction on gender, given a name. */
 const queryGender = async (name: string, country: string | null): Promise<GenderStat> => {
     let request: string = "https://api.genderize.io"
     request += "?name=" + name // Add the name given by the user to the URL
