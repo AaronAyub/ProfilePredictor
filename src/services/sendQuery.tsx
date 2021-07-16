@@ -8,7 +8,7 @@ import queryGender from './queryGender'
 import queryCountry from './queryCountry'
 
 // Queries the APIs for all requested metrics to return a profile prediction
-const predict = async (name: string, country: string): Promise<Profile> => {
+const predict = async (name: string, country: string | null): Promise<Profile> => {
     let ageStat: AgeStat = await queryAge(name, country)
     let genderStat: GenderStat = await queryGender(name, country)
     let countryStat: string | null | {country_id: string, probability: number}[] = null

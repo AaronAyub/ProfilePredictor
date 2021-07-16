@@ -11,7 +11,7 @@ const App = (): JSX.Element => {
     const [profile, setProfile] = useState<Profile | null>(null)
 
     // Create a profile prediction based on the name and country provided by the user
-    const predict = async (name: string, country: string) => {
+    const predict = async (name: string, country: string | null) => {
         setProfile(await sendQuery(name,country))
     }
 
@@ -23,12 +23,18 @@ const App = (): JSX.Element => {
         return <React.Fragment></React.Fragment>
     }
 
+    // Returns true if a profile has already been created.
+    const hasProfile = () => {
+        if (profile) return true
+        else return false
+    }
+
     return (
         <div className="App">
             <Typography align="center" variant="h2" className="title">
                 Profile Predictor
             </Typography>
-            <Query predict={predict} />
+            <Query predict={predict} hasProfile={hasProfile()} />
             <RenderSummary />
         </div>
     );
