@@ -8,29 +8,13 @@
     justify-content:space-between;
 }
 
-/* App contains everything except for the navbar and footer. */
-.App {
-    flex-grow:1;
-}
-
 .query {
     align-items:center;
     justify-content:center;
 }
 
-/* Add more spacing below the footer for smaller screens */
-@media only screen and (min-height: 701px) {
-    .index {
-        min-height:98vh;
-    }
-}
-@media only screen and (min-height: 501px) and (max-height: 700px) {
-    .index {
-        min-height:97vh;
-    }
-}
-@media only screen and (max-height: 500px) {
-    .index {
-        min-height:96vh;
-    }
+.footer {
+    position: fixed;
+    bottom: 0;
+    font-size: 90%;
 }

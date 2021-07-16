@@ -1,4 +1,4 @@
-import { Button, TextField, Box } from '@material-ui/core'
+import { Button, TextField, Box, Link } from '@material-ui/core'
 import React, { useState } from 'react'
 import countries from '../json/countryList.json'
 
@@ -72,13 +72,15 @@ const Query = (props: QueryProps): JSX.Element => {
         if (props.hasProfile) {
             return (
                 <div>
-                    Would you like to make another prediction?
+                    Would you like to make another prediction? <Link href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">Country Codes</Link>
                 </div>
             )
         }
         return (
             <div>
-                Enter a name and press "Submit" to guess a person's profile. You can also specify the country for more accurate results.
+                Enter a name and press "Submit" to guess a person's profile.
+                <br/>You can also specify the country or two-letter ISO 3166-1 alpha-2 country code for more accurate results.
+                <br/>See <Link href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">this list</Link> for supported countries and their country codes.
             </div>
         )
     }

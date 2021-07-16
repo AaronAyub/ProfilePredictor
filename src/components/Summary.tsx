@@ -53,7 +53,7 @@ const Summary = (props: SummaryProps): JSX.Element => {
         let list: {country_id: string, probability: number}[] = props.profile.country
         return (
             <div>
-                Possible Countries:
+                Most Likely Countries:
                 <ul>
                     {list.map((obj:{country_id: string, probability: number}, index: number) => (
                         <li>
