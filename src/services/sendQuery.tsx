@@ -6,6 +6,7 @@ import CountryStat from '../interfaces/CountryStat'
 import queryAge from './queryAge'
 import queryGender from './queryGender'
 import queryCountry from './queryCountry'
+import { codeToName } from './countryTools'
 
 // Queries the APIs for all requested metrics to return a profile prediction
 const predict = async (name: string, country: string | null): Promise<Profile> => {
@@ -22,11 +23,26 @@ const predict = async (name: string, country: string | null): Promise<Profile> =
         countryStat = country
     }
 
+    if (countryStat) {
+        if (typeof(countryStat) === "string") {
+            countryStat = codeToName(countryStat)
+        }
+        else {
+            countryStat = countryStat.map((entry) => {
+                entry = {
+                    country_id: codeToName(entry.country_id),
+                    probability: Math.round(entry.probability * 10000) / 100
+                }
+                return entry
+            })
+        }
+    }
+
     return {
         name: name,
         age: ageStat.age,
         gender: genderStat.gender,
-        genderProbability: genderStat.probability,
+        genderProbability: genderStat.probability * 100,
         country: countryStat
     }
 }

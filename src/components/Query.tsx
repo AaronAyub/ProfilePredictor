@@ -1,6 +1,6 @@
 import { Button, TextField, Box, Link } from '@material-ui/core'
 import React, { useState } from 'react'
-import countries from '../json/countryList.json'
+import { hasCountry } from '../services/countryTools'
 
 type predict = (name: string, country: string | null) => void
 interface QueryProps {
@@ -16,17 +16,6 @@ const Query = (props: QueryProps): JSX.Element => {
     const [countryError, setCountryError] = useState<boolean>(false)
     const [nameText, setNameText] = useState<string>("")
     const [countryText, setCountryText] = useState<string>("")
-
-    /* Checks if the user-provided country is in the country list.
-    Returns the country code. If the country isn't found, returns a blank code. */
-    const hasCountry = (country: string, countries: {[key: string]: string}): string | null => {
-        for (let code in countries) {
-            // If the user provided a valid country or country code (case-insensitive), return the matching code
-            if (code === country.toUpperCase() || countries[code].toUpperCase() === country.toUpperCase()) return code
-        }
-        // If the user provided neither a valid code or country name, return null
-        return null
-    }
 
     const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
@@ -48,7 +37,7 @@ const Query = (props: QueryProps): JSX.Element => {
         // Check that the user entered a valid country or country code
         let countryCode: string | null = null
         if (country) {
-            countryCode = hasCountry(country,countries)
+            countryCode = hasCountry(country)
             if (!countryCode) {
                 setCountryError(true)
                 setCountryText("Sorry, do not have data on this country.")

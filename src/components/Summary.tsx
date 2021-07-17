@@ -31,7 +31,7 @@ const Summary = (props: SummaryProps): JSX.Element => {
                     {props.profile.gender}
                 </div>
                 <div>
-                    {props.profile.genderProbability}
+                    {props.profile.genderProbability} %
                 </div>
             </React.Fragment>
         )
@@ -41,7 +41,9 @@ const Summary = (props: SummaryProps): JSX.Element => {
     Alternatively, displays the country the user provided one. */
     const RenderCountry = () => {
         if (!props.profile.country) {
-            return <React.Fragment></React.Fragment>
+            return (
+                <div>There was an error predicting the country.</div>
+            )
         }
         else if (typeof(props.profile.country) === "string") {
             return (
@@ -57,7 +59,7 @@ const Summary = (props: SummaryProps): JSX.Element => {
                 <ul>
                     {list.map((obj:{country_id: string, probability: number}, index: number) => (
                         <li>
-                            {index}. {obj.country_id}: {obj.probability}
+                            {index}. {obj.country_id}: {obj.probability} %
                         </li>
                     ))}
                 </ul>
