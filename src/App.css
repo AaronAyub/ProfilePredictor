@@ -4,6 +4,7 @@
     align-items:center;
 }
 
+/* In the navbar, separate the title and the links */
 .toolbar {
     justify-content:space-between;
 }
@@ -13,8 +14,16 @@
     justify-content:center;
 }
 
+/* Align the footer to the bottom of the page.*/
 .footer {
     position: fixed;
     bottom: 0;
-    font-size: 90%;
+    font-size: 85%;
+}
+
+/* Hide the large title for sufficiently small screens*/
+@media only screen and (max-height: 500px) {
+    .title {
+        display: none
+    }
 }
