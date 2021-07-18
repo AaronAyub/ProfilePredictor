@@ -12,7 +12,7 @@ const queryAge = async (name: string, country: string | null): Promise<AgeStat> 
         return await response.json()
     }
     return {
-        age: -1,
+        age: null,
         count: -1
     }
 }

@@ -10,12 +10,12 @@ interface SummaryProps {
 const Summary = (props: SummaryProps): JSX.Element => {
     // Display the predicted age if possible
     const RenderAge = () => {
-        if (props.profile.age === -1) {
-            return <React.Fragment></React.Fragment>
+        if (!props.profile.age) {
+            return <div>No information on age was found.</div>
         }
         return (
             <div>
-                {props.profile.age}
+                Predicted Age: {props.profile.age}
             </div>
         )
     }
@@ -23,17 +23,12 @@ const Summary = (props: SummaryProps): JSX.Element => {
     // Display the predicted gender and accuracy if possible
     const RenderGender = () => {
         if (!props.profile.gender) {
-            return <React.Fragment></React.Fragment>
+            return <div>No information on gender was found.</div>
         }
         return (
-            <React.Fragment>
-                <div>
-                    {props.profile.gender}
-                </div>
-                <div>
-                    {props.profile.genderProbability} %
-                </div>
-            </React.Fragment>
+            <div>
+                Predicted Gender: {props.profile.gender} ({props.profile.genderProbability} % likely)
+            </div>
         )
     }
 
@@ -48,22 +43,30 @@ const Summary = (props: SummaryProps): JSX.Element => {
         else if (typeof(props.profile.country) === "string") {
             return (
                 <div>
-                    {props.profile.country}
+                    Specified Country: {props.profile.country}
                 </div>
             )
         }
         let list: {country_id: string, probability: number}[] = props.profile.country
+        if (list.length === 0) {
+            return (
+                <div>No information on country was found.</div>
+            )
+        }
         return (
-            <div>
-                Most Likely Countries:
-                <ul>
-                    {list.map((obj:{country_id: string, probability: number}, index: number) => (
-                        <li>
-                            {index}. {obj.country_id}: {obj.probability} %
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <React.Fragment>
+                <div>Predicted Country: {list[0].country_id} ({list[0].probability} % likely)</div>
+                <div>
+                    Most Likely Countries:
+                    <ul>
+                        {list.map((obj:{country_id: string, probability: number}, index: number) => (
+                            <li key={obj.country_id}>
+                                {index + 1}. {obj.country_id}: {obj.probability} %
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </React.Fragment>
         )
     }
 
