@@ -41,6 +41,7 @@ const Query = (props: QueryProps): JSX.Element => {
             if (!countryCode) {
                 setCountryError(true)
                 setCountryText("Sorry, do not have data on this country.")
+                return
             }
             else {
                 setCountryError(false)
