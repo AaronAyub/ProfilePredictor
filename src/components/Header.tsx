@@ -46,6 +46,8 @@ function Header (): JSX.Element {
                 <p>Profile Predictor is a web-based interface used to predict certain attributes associated with names.
                 These attributes include age, gender, and nationality.</p>
                 <p>Upon entering a name, the query will return a predicted age, gender, probability of that name being associated with the given gender, and the three most likely countries this name belongs to.</p>
+                <p>You may also narrow down predictions by providing a country. You can either enter a name, or a two-letter ISO 3166-1 alpha country code.</p>
+                <p><Link href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements">List of supported countries and country codes</Link></p>
                 <p>Predictions are performed by querying three APIs,&nbsp;
                 <Link href="https://agify.io/">
                     agify.io
