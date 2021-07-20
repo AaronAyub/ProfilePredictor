@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@material-ui/core'
+import { List, ListItem, ListItemText } from '@material-ui/core'
 import Profile from '../interfaces/Profile'
 
 interface SummaryProps {
@@ -11,52 +11,36 @@ const Summary = (props: SummaryProps): JSX.Element => {
     // Display the predicted age if possible
     const RenderAge = () => {
         if (!props.profile.age) {
-            return <div>No information on age was found.</div>
+            return <ListItemText primary="No information on age was found." />
         }
-        return (
-            <div>
-                Predicted Age: {props.profile.age}
-            </div>
-        )
+        return <ListItemText primary={`Predicted Age: ${props.profile.age}`} />
     }
 
     // Display the predicted gender and accuracy if possible
     const RenderGender = () => {
         if (!props.profile.gender) {
-            return <div>No information on gender was found.</div>
+            return <ListItemText primary="No information on gender was found." />
         }
-        return (
-            <div>
-                Predicted Gender: {props.profile.gender} ({props.profile.genderProbability} % likely)
-            </div>
-        )
+        return <ListItemText primary={`Predicted Gender: ${props.profile.gender}`} secondary={`Probability: ${props.profile.genderProbability} %`} />
     }
 
     /* Displays the predicted country if the user didn't provide one.
     Alternatively, displays the country the user provided one. */
     const RenderCountry = () => {
         if (!props.profile.country) {
-            return (
-                <div>There was an error predicting the country.</div>
-            )
+            return <ListItemText primary="There was an error predicting the country."/>
         }
         else if (typeof(props.profile.country) === "string") {
-            return (
-                <div>
-                    Specified Country: {props.profile.country}
-                </div>
-            )
+            return <ListItemText primary={`Specified Country: ${props.profile.country}`} />
         }
         let list: {country_id: string, probability: number}[] = props.profile.country
         if (list.length === 0) {
-            return (
-                <div>No information on country was found.</div>
-            )
+            return <ListItemText primary="No information on country was found."/>
         }
         return (
             <React.Fragment>
-                <div>Predicted Country: {list[0].country_id} ({list[0].probability} % likely)</div>
-                <div>
+                <ListItemText primary={`Predicted Country: ${list[0].country_id}`} secondary={`Probability: ${list[0].probability} %`}/>
+                {/* <div>
                     Most Likely Countries:
                     <ul>
                         {list.map((obj:{country_id: string, probability: number}, index: number) => (
@@ -65,20 +49,26 @@ const Summary = (props: SummaryProps): JSX.Element => {
                             </li>
                         ))}
                     </ul>
-                </div>
+                </div> */}
             </React.Fragment>
         )
     }
 
     return (
-        <Box>
-            <div>
-                {props.profile.name}
-            </div>
-            <RenderAge />
-            <RenderGender />
-            <RenderCountry />
-        </Box>
+        <List>
+            <ListItem className="summaryItem">
+                <ListItemText primary={`Name: ${props.profile.name}`}/>
+            </ListItem>
+            <ListItem className="summaryItem">
+                <RenderAge />
+            </ListItem>
+            <ListItem className="summaryItem">
+                <RenderGender />
+            </ListItem>
+            <ListItem className="summaryItem">
+                <RenderCountry />
+            </ListItem>
+        </List>
     )
 }
 
