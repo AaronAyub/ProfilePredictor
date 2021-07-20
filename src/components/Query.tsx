@@ -84,7 +84,7 @@ const Query = (props: QueryProps): JSX.Element => {
             <Autocomplete
             options={countries as {code: string, name: string}[]}
             inputValue={country}
-            onInputChange={(event:any, newInputValue:string) => {
+            onInputChange={(event:React.ChangeEvent<{}>, newInputValue:string) => {
                 setCountry(newInputValue)
             }}
             freeSolo // Prevent the autocompletion from overwriting invalid user responses.
@@ -103,14 +103,11 @@ const Query = (props: QueryProps): JSX.Element => {
                     helperText={countryText}
                     value={country}
                     label="Country (Optional)"
-                    inputProps={{
-                        ...params.inputProps
-                    }}
                 />
             )}
             />
             
-            <Button onClick={handleSubmit} variant="contained" color="primary">Submit</Button>
+            <Button onClick={handleSubmit} variant="contained" color="primary">Predict</Button>
         </Box>
     )
 }
