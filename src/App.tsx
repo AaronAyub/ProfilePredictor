@@ -5,6 +5,7 @@ import sendQuery from "./services/sendQuery"
 
 import Query from './components/Query'
 import Summary from './components/Summary'
+import CountryGraph from './components/CountryGraph'
 import "./App.css"
 
 const App = (): JSX.Element => {
@@ -47,6 +48,14 @@ const App = (): JSX.Element => {
         else return false
     }
 
+    // Render the graph of potential countries if a country isn't specified
+    const RenderCountryGraph = () => {
+        if (profile && profile.country && typeof(profile.country) !== "string" && profile.country.length > 0) {
+            return <CountryGraph countries={profile.country} />
+        }
+        return <React.Fragment></React.Fragment>
+    }
+
     return (
         <div className="App">
             <Typography align="center" variant="h2" className="title">
@@ -55,6 +64,7 @@ const App = (): JSX.Element => {
             <Query predict={predict} hasProfile={hasProfile()} />
             <RenderProgress />
             <RenderSummary />
+            <RenderCountryGraph />
         </div>
     );
 }

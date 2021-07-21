@@ -33,13 +33,12 @@ const Summary = (props: SummaryProps): JSX.Element => {
         else if (typeof(props.profile.country) === "string") {
             return <ListItemText primary={`Specified Country: ${props.profile.country}`} />
         }
-        let list: {country_id: string, probability: number}[] = props.profile.country
-        if (list.length === 0) {
+        if (props.profile.country.length === 0) {
             return <ListItemText primary="No information on country was found."/>
         }
         return (
             <React.Fragment>
-                <ListItemText primary={`Predicted Country: ${list[0].country_id}`} secondary={`Probability: ${list[0].probability} %`}/>
+                <ListItemText primary={`Predicted Country: ${props.profile.country[0].country_id}`} secondary={`Probability: ${props.profile.country[0].probability} %`}/>
                 {/* <div>
                     Most Likely Countries:
                     <ul>
