@@ -1,50 +1,58 @@
 import Countries from '../interfaces/Countries'
-import { PieChart } from 'react-minimal-pie-chart'
+import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts'
+import { useState, useEffect } from 'react'
 
 interface CountryGraphProps {
     countries: Countries
 }
 
 const CountryGraph = (props: CountryGraphProps): JSX.Element => {
-    // Creates an array that describes the data in the pie chart
-    const populateChart = () => {
+    const [data, setData] = useState<{name: string; value: number;}[]>([])
+
+    const colors = [
+        "#1769aa",
+        "#f50057",
+        "#00a152",
+        "#ffa000"
+    ]
+    
+    useEffect(() => {
         let remainingPercent: number = 100 // This will end as the percent that a person does not belong to any of the listed countries
         let data = [] // The used in the graph
-        let colors=[
-            "#1769aa",
-            "#f50057",
-            "#00a152",
-            "#ffa000"
-        ]
-
+        
         // Add each country to the graph
         props.countries.forEach((entry) => {
             remainingPercent-= entry.probability
             data.push({
-                title: entry.country_id,
-                value: entry.probability,
-                color: colors[data.length]
+                name: entry.country_id,
+                value: entry.probability
             })
         })
 
         // Add the "Other" entry to the graph
         data.push({
-            title: 'Other',
-            value: Math.round(remainingPercent * 100) / 100,
-            color: colors[data.length]
+            name: 'Other',
+            value: Math.round(remainingPercent * 100) / 100
         })
-        return data
-    }
+        setData(data)
+    },[props.countries])
     
     return (
         <PieChart
-            data={populateChart()}
-            label={({dataEntry}) => dataEntry.value + " %"}
-            labelStyle={{
-                fontSize: '0.2rem'
-            }}
-            labelPosition={80}
-        />
+        height={500}
+        width={500}
+        >
+            <Pie data={data}
+            dataKey="value"
+            nameKey="name"
+            label={true}>
+                {data.map((entry, index) => (
+                    <Cell key={index} fill={colors[index % colors.length]}/>
+                ))}
+            </Pie>
+            <Legend />
+            <Tooltip />
+        </PieChart>
     )
 
 }

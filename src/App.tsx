@@ -26,7 +26,7 @@ const App = (): JSX.Element => {
     const RenderProgress = () => {
         if (progress) {
             return (
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                     <CircularProgress />
                 </Grid>
             )
