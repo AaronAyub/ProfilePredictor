@@ -1,6 +1,7 @@
 .index {
     display:flex;
     flex-direction:column;
+    min-height: 98vh;
     align-items:center;
 }
 
@@ -10,19 +11,23 @@
 }
 
 .query {
+    padding-top: 1rem;
     align-items:center;
     justify-content:center;
 }
 
+.App {
+    flex: 1;
+}
+
 /* Align the footer to the bottom of the page.*/
 .footer {
-    position: fixed;
     bottom: 0;
     font-size: 85%;
 }
 
 /* Hide the large title for sufficiently small screens*/
-@media only screen and (max-height: 500px) {
+@media only screen and (max-height: 800px) {
     .title {
         display: none
     }

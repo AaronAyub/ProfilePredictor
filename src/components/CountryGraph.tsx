@@ -1,6 +1,7 @@
 import Countries from '../interfaces/Countries'
 import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Typography } from '@material-ui/core'
 
 interface CountryGraphProps {
     countries: Countries
@@ -38,21 +39,27 @@ const CountryGraph = (props: CountryGraphProps): JSX.Element => {
     },[props.countries])
     
     return (
-        <PieChart
-        height={500}
-        width={500}
-        >
-            <Pie data={data}
-            dataKey="value"
-            nameKey="name"
-            label={true}>
-                {data.map((entry, index) => (
-                    <Cell key={index} fill={colors[index % colors.length]}/>
-                ))}
-            </Pie>
-            <Legend />
-            <Tooltip />
-        </PieChart>
+        <React.Fragment>
+            <Typography align="center" variant="h5">
+                Countries by Probability
+            </Typography>
+            <PieChart
+            height={500}
+            width={500}
+            cy={80}
+            >
+                <Pie data={data}
+                dataKey="value"
+                nameKey="name"
+                label={true}>
+                    {data.map((entry, index) => (
+                        <Cell key={index} fill={colors[index % colors.length]}/>
+                    ))}
+                </Pie>
+                <Legend />
+                <Tooltip />
+            </PieChart>
+        </React.Fragment>
     )
 
 }
