@@ -26,9 +26,10 @@ const App = (): JSX.Element => {
     const RenderProgress = () => {
         if (progress) {
             return (
-                <Grid container justifyContent="center">
-                    <CircularProgress />
+                <Grid alignContent="center" item xs={12}>
+                        <CircularProgress />
                 </Grid>
+                
             )
         }
         return <React.Fragment></React.Fragment>
@@ -61,10 +62,18 @@ const App = (): JSX.Element => {
             <Typography align="center" variant="h2" className="title">
                 Profile Predictor
             </Typography>
-            <Query predict={predict} hasProfile={hasProfile()} />
-            <RenderProgress />
-            <RenderSummary />
-            <RenderCountryGraph />
+            <Grid justifyContent="center" container spacing={4}>
+                <Grid item xs={8}>
+                    <Query predict={predict} hasProfile={hasProfile()} />
+                </Grid>
+                <RenderProgress />
+                <Grid item md={6}>
+                    <RenderSummary />
+                </Grid>
+                <Grid item>
+                    <RenderCountryGraph />
+                </Grid>
+            </Grid>
         </div>
     );
 }

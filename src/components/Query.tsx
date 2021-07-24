@@ -1,4 +1,4 @@
-import { Button, TextField, Box } from '@material-ui/core'
+import { makeStyles, Button, TextField, Box } from '@material-ui/core'
 import React, { useState } from 'react'
 import { hasCountry } from '../services/countryTools'
 import countries from '../services/countryList'
@@ -10,8 +10,16 @@ interface QueryProps {
     hasProfile: boolean
 }
 
+const useStyles = makeStyles ((theme) => ({
+    submitButton: {
+        marginTop: '1rem'
+    }
+}))
+
 // The Query component allows the user to query the APIs to create a prediction.
 const Query = (props: QueryProps): JSX.Element => {
+    const classes = useStyles()
+
     const [name, setName] = useState<string>("")
     const [country, setCountry] = useState<string>("")
     const [nameError, setNameError] = useState<boolean>(false)
@@ -107,7 +115,7 @@ const Query = (props: QueryProps): JSX.Element => {
             )}
             />
             
-            <Button onClick={handleSubmit} variant="contained" color="primary">Predict</Button>
+            <Button className={classes.submitButton} onClick={handleSubmit} variant="contained" color="primary">Predict</Button>
         </Box>
     )
 }
