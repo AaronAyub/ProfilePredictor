@@ -87,7 +87,7 @@ const Query = (props: QueryProps): JSX.Element => {
     return (
         <Box className="query">
             <RenderInstructions />
-            <TextField error={nameError} helperText={nameText} value={name} onChange={handleChangeName} name="name" label="First Name"/>
+            <TextField fullWidth error={nameError} helperText={nameText} value={name} onChange={handleChangeName} name="name" label="First Name"/>
             
             <Autocomplete
             options={countries as {code: string, name: string}[]}
