@@ -1,0 +1,2 @@
+.index{display:flex;flex-direction:column;min-height:98vh;align-items:center}.App{flex:1 1}.toolbar{justify-content:space-between}.query{padding-top:1rem;align-items:center;justify-content:center}.footer{bottom:0;font-size:85%}@media only screen and (max-height:800px){.title{display:none}}.summaryItem{border:1px solid #000;background-color:rgba(0,0,0,.1);border-radius:.5rem;margin-top:.5rem;margin-bottom:.5rem}
+/*# sourceMappingURL=main.96e7810d.chunk.css.map */
