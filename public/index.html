@@ -7,10 +7,20 @@
       name="description"
       content="Predicts demographic information based on a given name."
     />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <noscript>
+      <link rel="stylesheet" href="%PUBLIC_URL%/noscript.css">
+    </noscript>
     <title>Profile Predictor</title>
   </head>
   <body>
-    <noscript>Please enable javascript to use this website.</noscript>
+    <noscript>
+      <div class="textBox">
+        <h1>Javascript Disabled</h1>
+        <p>Profile Predictor requires javascript to operate properly. Please enable javascript to use this website.</p>
+        <a href="https://github.com/AaronAyub/ProfilePredictor">Source Code</a>
+      </div>
+    </noscript>
     <div id="root"></div>
   </body>
 </html>
