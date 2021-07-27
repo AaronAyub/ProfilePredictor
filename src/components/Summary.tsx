@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles, Grid, Paper } from '@material-ui/core'
+import { makeStyles, Grid, Paper, Typography } from '@material-ui/core'
 import Profile from '../interfaces/Profile'
 
 interface SummaryProps {
@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     probability: {
         color: theme.palette.text.secondary,
         fontSize: 14
+    },
+    summaryTitle: {
+        marginBottom: "1.5rem"
     }
 }))
 
@@ -76,7 +79,10 @@ const Summary = (props: SummaryProps): JSX.Element => {
         )
     }
 
-    return (
+    return <React.Fragment>
+        <Typography align="center" variant="h5" className={classes.summaryTitle}>
+                Prediction Results
+        </Typography>
         <Grid container spacing={3}>
             <Grid item xs={6} md={12}>
                 <Paper className={classes.paper}>
@@ -99,21 +105,7 @@ const Summary = (props: SummaryProps): JSX.Element => {
                 </Paper>
             </Grid>
         </Grid>
-        // <List>
-        //     <ListItem className="summaryItem">
-        //         <ListItemText primary={`Name: ${props.profile.name}`}/>
-        //     </ListItem>
-        //     <ListItem className="summaryItem">
-        //         <RenderAge />
-        //     </ListItem>
-        //     <ListItem className="summaryItem">
-        //         <RenderGender />
-        //     </ListItem>
-        //     <ListItem className="summaryItem">
-        //         <RenderCountry />
-        //     </ListItem>
-        // </List>
-    )
+    </React.Fragment>
 }
 
 export default Summary

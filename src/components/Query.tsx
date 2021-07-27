@@ -27,6 +27,9 @@ const Query = (props: QueryProps): JSX.Element => {
     const [nameText, setNameText] = useState<string>("")
     const [countryText, setCountryText] = useState<string>("")
 
+    // Sort the countries by name for the query module, as it is more user-friendly than sorting by country-code.
+    countries.sort((a,b) => a.name.localeCompare(b.name))
+
     const handleChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value)
     }
